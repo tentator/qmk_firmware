@@ -7,6 +7,12 @@
 
 #pragma once
 
+#undef  MANUFACTURER
+#define MANUFACTURER Me
+#undef  PRODUCT
+#define PRODUCT      dz10t8or
+#undef  DESCRIPTION
+#define DESCRIPTION  Another 10tboard
 #define FORCE_NKRO
 #define TAPPING_TERM 175                // default is 200
 #define PERMISSIVE_HOLD                 // for fast typers: makes tap and hold keys trigger the hold if another key is pressed before releasingmakes tap and hold keys trigger the hold if another key is pressed before releasing
@@ -14,8 +20,12 @@
 // #define RETRO_TAPPING                // https://beta.docs.qmk.fm/features/feature_advanced_keycodes#retro-tapping
 #undef TAPPING_FORCE_HOLD               // se lo setti il doppio tap di un key non attiva l'autorepeat 
 // #define #GRAVE_ESC_GUI_OVERRIDE      // non dovrebbe servire, ma se usi KC_GESC almeno GUI+ESC non fa nulla (normalmente fa tilde)
-// #define NO_ACTION_ONESHOT            // con questo poi non va OSL() !!
-
+#undef NO_ACTION_ONESHOT                // con questo poi non va OSL() !!
+#define ONESHOT_TAP_TOGGLE 999
+// some speed shit
+// #define NO_ACTION_MACRO
+// #define NO_ACTION_FUNCTION
+ 
 #undef DISABLE_RGB_MATRIX_SPLASH
 #undef DISABLE_RGB_MATRIX_MULTISPLASH
 #undef DISABLE_RGB_MATRIX_SOLID_MULTISPLASH

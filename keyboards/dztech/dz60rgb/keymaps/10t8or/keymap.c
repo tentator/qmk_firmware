@@ -29,26 +29,27 @@ MO(layer) - momentarily activates layer. As soon as you let go of the key, the l
 LM(layer, mod) - Momentarily activates layer (like MO), but with modifier(s) mod active. Only supports layers 0-15 and the left modifiers: MOD_LCTL, MOD_LSFT, MOD_LALT, MOD_LGUI (note the use of MOD_ constants instead of KC_). These modifiers can be combined using bitwise OR, e.g. LM(_RAISE, MOD_LCTL | MOD_LALT).
 LT(layer, kc) - momentarily activates layer when held, and sends kc when tapped. Only supports layers 0-15.
 OSL(layer) - momentarily activates layer until the next key is pressed. See One Shot Keys for details and additional functionality.
+OSM(mod) - Momentarily hold down mod. You must use the MOD_* keycodes as shown in Mod Tap, not the KC_* codes
 TG(layer) - toggles layer, activating it if it's inactive and vice versa
 */
 
 extern bool autoshift_enabled;
 // KC_ASTG is to enable autoshift (currently toggle with RGB+ESC)
 #define _V_V_V_ KC_TRNS
-#define LT_DEL  LT(_RGB, KC_DEL)
+#define LT_END  LT(_RGB, KC_END)
 #define LT_SPC  LT(_SFN, KC_SPC)
 #define MT_SLSH RSFT_T(KC_SLSH)
 #define MT_UP   RSFT_T(KC_UP)
 #define MT_APP  RALT_T(KC_APP)
 #define LM_LALT LM(_FNM, MOD_LALT)
-#define OL_LSFT OSL(MOD_LSFT)  // Non sembra funzionare se lo metto al posto di KC_LSFT
+#define OL_LSFT OSM(MOD_LSFT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_DEF] = LAYOUT(
 		KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
 		KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, \
 		KC_DEL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,           \
-		OL_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  MT_SLSH,          MT_UP,   LT_DEL,  \
+		OL_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  MT_SLSH,          MT_UP,   LT_END,  \
 		KC_LCTL, KC_LGUI, LM_LALT,                   LT_SPC,                    MT_APP,  KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT  \
 	),
 	[_FNM] = LAYOUT(
