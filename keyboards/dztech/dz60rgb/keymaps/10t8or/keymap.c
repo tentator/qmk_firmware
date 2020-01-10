@@ -24,6 +24,22 @@ enum dz60rgb_keycodes {
 	MAS_WHT,
 };
 
+enum custom_keycodes {
+  QMKBEST = SAFE_RANGE,
+  QMKURL,
+  QMKOTH,
+  QMKJ2,
+  QMKYM1,
+  QMKYM2,
+  QMKYM3,
+  QMKYM4,
+  QMKYM5,
+  QMKYM6,
+  QMKYM7,
+  QMKYM8,
+  QMKYM9
+};
+
 /*
 MO(layer) - momentarily activates layer. As soon as you let go of the key, the layer is deactivated.
 LM(layer, mod) - Momentarily activates layer (like MO), but with modifier(s) mod active. Only supports layers 0-15 and the left modifiers: MOD_LCTL, MOD_LSFT, MOD_LALT, MOD_LGUI (note the use of MOD_ constants instead of KC_). These modifiers can be combined using bitwise OR, e.g. LM(_RAISE, MOD_LCTL | MOD_LALT).
@@ -68,9 +84,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	[_SFN] = LAYOUT( // space-fn
 		KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_INS,  \
-		KC_CALC, _______, _______, _______, _______, _______, _______, KC_HOME, KC_UP,   KC_END,  _______, KC_PSCR, KC_PAUS, KC_BSPC, \
-		_______, _______, _______, _______, _______, _______, KC_PGUP, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______,          \
-		_______, _______, _______, _______, _______, KC_SPC,  KC_PGDN, _______, _______, _______, _______,          KC_PGUP, _______, \
+		KC_CALC, QMKBEST, QMKJ2,   QMKYM3,  QMKYM6,  QMKYM9,  _______, KC_HOME, KC_UP,   KC_END,  _______, KC_PSCR, KC_PAUS, KC_BSPC, \
+		_______, QMKURL,  QMKYM1,  QMKYM4,  QMKYM7,  _______, KC_PGUP, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______,          \
+		_______, QMKOTH,  QMKYM2,  QMKYM5,  QMKYM8,  KC_SPC,  KC_PGDN, _______, _______, _______, _______,          KC_PGUP, _______, \
 		_______, _______, _______,                   _V_V_V_,                   _______, _______,          KC_HOME, KC_PGDN, KC_END   \
 	),
 	/*
@@ -263,10 +279,82 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	return true;
-}
-
-
+  switch (keycode) {
+    case QMKBEST:
+      if (record->event.pressed) {
+        // when keycode QMKBEST is pressed
+        SEND_STRING("autocmd filetype yaml setlocal ai ts=2 sw=2 et sts=2 cuc cul" SS_TAP(X_ENTER));
+      } else {
+        // when keycode QMKBEST is released
+      }
+      break;
+    case QMKURL:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING("");
+      } else {
+        // when keycode QMKURL is released
+      }
+      break;
+    case QMKOTH:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKJ2:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .j2 templ
+      }
+      break;
+    case QMKYM1:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM2:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM3:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM4:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM5:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM6:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM7:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml templ
+      }
+      break;
+    case QMKYM8:
+      if (record->event.pressed) {
+        SEND_STRING("--- \n\
+"); // .yaml templ
+      }
+      break;
+    case QMKYM9:
+      if (record->event.pressed) {
+        SEND_STRING(""); // .yaml temp9
+      }
+      break;
+  }
+  return true;
+};
 
 
 void rgb_matrix_layer_helper (uint8_t red, uint8_t green, uint8_t blue, bool default_layer) {

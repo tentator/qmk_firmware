@@ -14,7 +14,7 @@
 #undef  DESCRIPTION
 #define DESCRIPTION  Another 10tboard
 #define FORCE_NKRO
-#define TAPPING_TERM 175                // default is 200
+#define TAPPING_TERM 150                // default is 200
 #define PERMISSIVE_HOLD                 // for fast typers: makes tap and hold keys trigger the hold if another key is pressed before releasingmakes tap and hold keys trigger the hold if another key is pressed before releasing
 #define IGNORE_MOD_TAP_INTERRUPT        // enables rolling combos
 // #define RETRO_TAPPING                // https://beta.docs.qmk.fm/features/feature_advanced_keycodes#retro-tapping
